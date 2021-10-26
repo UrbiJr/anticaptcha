@@ -113,6 +113,14 @@ func (c *Client) createTaskRecaptchaV3(websiteURL string, recaptchaKey string, m
 	return 0, errors.New("task number not found in server response")
 }
 
+func JSONMarshal(t interface{}) ([]byte, error) {
+	buffer := &bytes.Buffer{}
+	encoder := json.NewEncoder(buffer)
+	encoder.SetEscapeHTML(false)
+	err := encoder.Encode(t)
+	return buffer.Bytes(), err
+}
+
 // Method to create the task to process a GeeTest captcha, returns the task_id
 func (c *Client) createTaskGeeTest(websiteURL string, geeTestGT string, geeTestChallenge string, geeTestAPIServerSubdomain string) (float64, error) {
 	// Mount the data to be sent
@@ -127,7 +135,7 @@ func (c *Client) createTaskGeeTest(websiteURL string, geeTestGT string, geeTestC
 		},
 	}
 
-	b, err := json.Marshal(body)
+	b, err := JSONMarshal(body)
 	if err != nil {
 		return 0, err
 	}
