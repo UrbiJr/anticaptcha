@@ -1,3 +1,3 @@
-module github.com/mattia-git/anticaptcha
+module github.com/UrbiJr/anticaptcha
 
 go 1.14
