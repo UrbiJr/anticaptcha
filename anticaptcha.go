@@ -21,9 +21,9 @@ type Client struct {
 
 // GeeTestSolution : Holds the solution variables of a GeeTest solve
 type GeeTestSolution struct {
-	Challenge string
-	Validate  string
-	Seccode   string
+	Challenge string `json:"challenge"`
+	Validate  string `json:"validate"`
+	Seccode   string `json:"seccode"`
 }
 
 // NewClient : Returns an AntiCaptcha client
